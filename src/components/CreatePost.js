@@ -38,14 +38,14 @@ const CreatePost = ({ isAuth }) => {
                 <div className="inputGp">
                     <label>Title:</label>
                     <input
-                        placeholder="Title..."
+                        placeholder="Enter a Title..."
                         onChange={(event) => setTitle(event.target.value)}
                     />
                 </div>
                 <div className="inputGp">
                     <label>Post:</label>
                     <textarea
-                        placeholder="Post..."
+                        placeholder="Enter the Post..."
                         onChange={(event) => setPostText(event.target.value)}
                     />
                 </div>
