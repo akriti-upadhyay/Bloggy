@@ -4,10 +4,12 @@ import { auth, db } from '../firebase-config'
 
 function Home({ isAuth }) {
     const [postLists, setPostList] = useState([])
+    const [randstate, setRandstate] = useState(0)
     const postsCollectionRef = collection(db, 'posts')
 
     const deletePost = async (id) => {
         // post which we want to delete
+        setRandstate(randstate + 1)
         const postDoc = doc(db, 'posts', id)
         await deleteDoc(postDoc)
     }
@@ -19,7 +21,7 @@ function Home({ isAuth }) {
         }
 
         getPosts()
-    }, [deletePost, postsCollectionRef])
+    }, [randstate])
 
     return (
         <div className="homePage">
@@ -30,9 +32,6 @@ function Home({ isAuth }) {
                             <div className="title">
                                 <h1>{post.title}</h1>
                             </div>
-                            {/* <div className="updatePost deletePost">
-                                <button onClick={() => updatePost(post.id)}>&#128393;</button>
-                            </div> */}
                             <div className="deletePost">
                                 {isAuth &&
                                     post.author.id === auth.currentUser.uid && (
@@ -45,7 +44,10 @@ function Home({ isAuth }) {
                             </div>
                         </div>
                         <div className="postTextContainer">{post.postText}</div>
-                        <h3>@{post.author.name}</h3>
+                        <h3>
+                            <div id='author'>@ {post.author.name}</div>
+                            <div id='date'>{`${post.createdAt.date} ${post.createdAt.month} ${post.createdAt.year}`}</div>
+                        </h3>
                     </div>
                 )
             })}

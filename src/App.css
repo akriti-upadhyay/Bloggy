@@ -208,7 +208,7 @@ h3{
     width: 600px;
     height: auto;
     max-height: 600px;
-    background-color: rgb(250, 250, 250);
+    background-color: #E0FFFF;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin: 20px;
     padding: 20px;
@@ -247,3 +247,13 @@ h3{
     overflow: hidden;
     overflow-y: auto;
 }
+
+.post h3{
+    font-size: 15px;
+    padding-top: 30px;
+}
+
+#date{
+    padding-bottom: 50px;
+}
+

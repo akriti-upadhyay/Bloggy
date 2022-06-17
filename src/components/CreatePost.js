@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { addDoc, collection } from 'firebase/firestore'
-import { db, auth } from '../firebase-config'
+import { db, auth, projectFirestore } from '../firebase-config'
 import { useNavigate } from 'react-router-dom'
 
 const CreatePost = ({ isAuth }) => {
+    const months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'June',
+        'July',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+    ]
     const [title, setTitle] = useState('')
     const [postText, setPostText] = useState('')
 
@@ -11,6 +25,7 @@ const CreatePost = ({ isAuth }) => {
     const postsCollectionRef = collection(db, 'posts')
     let navigate = useNavigate()
     const createPost = async () => {
+        const currentTime = new Date()
         await addDoc(postsCollectionRef, {
             title,
             postText,
@@ -18,7 +33,13 @@ const CreatePost = ({ isAuth }) => {
                 name: auth.currentUser.displayName,
                 id: auth.currentUser.uid,
             },
+            createdAt: {
+                date: currentTime.getDate(),
+                month: months[currentTime.getMonth()],
+                year: currentTime.getFullYear(),
+            },
         })
+
         // navigate back to homepage after a post is created
         navigate('/')
     }
