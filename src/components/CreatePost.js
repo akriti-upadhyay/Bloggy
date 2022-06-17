@@ -48,7 +48,7 @@ const CreatePost = ({ isAuth }) => {
         // if user not authenticated, redirect to login page
         // prevent access from URL
         if (!isAuth) {
-            navigate('/')
+            navigate('/login')
         }
     }, [isAuth, navigate])
 
