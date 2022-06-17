@@ -15,8 +15,8 @@ const App = () => {
         signOut(auth).then(() => {
             localStorage.clear()
             setIsAuth(false)
-            // redirect to login page after logging-out
-            window.location.pathname = '/login'
+            // redirect to home page after logging-out
+            window.location.pathname = '/'
         })
     }
 
